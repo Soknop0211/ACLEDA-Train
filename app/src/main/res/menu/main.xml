@@ -1,0 +1,18 @@
+<!-- sample_menu.xml -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/menu_setting"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/action_done"
+        android:icon="@drawable/ic_qrcode"
+        android:title="@string/menu_faqs"
+        android:iconTint="@color/white"
+        app:showAsAction="ifRoom|withText"/>
+
+</menu>
