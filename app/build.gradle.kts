@@ -61,13 +61,17 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.15.1")
     annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
 
-    // Scan qr
+    // Scan qr zxing
     implementation("com.journeyapps:zxing-android-embedded:4.3.0")
 
-    // Barcode scanning API
-    implementation("com.google.mlkit:barcode-scanning:17.0.0")
+    // Scan CameraX dependencies with mlkit
+    implementation("androidx.camera:camera-camera2:1.3.1")
+    implementation("androidx.camera:camera-lifecycle:1.3.1")
+    implementation("androidx.camera:camera-view:1.4.0-alpha03")
 
-    implementation("androidx.camera:camera-camera2:1.0.1")
-    implementation("androidx.camera:camera-lifecycle:1.0.1")
-    implementation("androidx.camera:camera-view:1.0.0-alpha28")
+    // ML Kit barcode scanning dependency
+    implementation("com.google.mlkit:barcode-scanning:17.2.0")
+
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
+
 }

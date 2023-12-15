@@ -27,5 +27,6 @@
     <string name="favorite">Favorite</string>
     <string name="click_here">Click Here</string>
     <string name="scan_qr">Scan QR</string>
+    <string name="barcode_value">Barcode value</string>
 
 </resources>

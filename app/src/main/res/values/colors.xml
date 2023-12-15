@@ -19,4 +19,6 @@
 
     <color name="red">#f84748</color>
 
+    <color name="barcode_reticle_background">#99000000</color>
+    <color name="barcode_reticle_stroke">#ffffff</color>
 </resources>

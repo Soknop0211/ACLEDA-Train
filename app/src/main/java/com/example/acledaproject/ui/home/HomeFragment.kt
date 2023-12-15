@@ -1,7 +1,6 @@
 package com.example.acledaproject.ui.home
 
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -18,6 +17,7 @@ import com.example.acledaproject.ui.CaptureScanActivity
 import com.example.acledaproject.ui.adapter.HomeExtraCategoryAdapter
 import com.example.acledaproject.ui.adapter.HomeMainCategoryAdapter
 import com.example.acledaproject.ui.adapter.ImageSliderAdapter
+import com.example.acledaproject.ui.scan.DoScanMlKitActivity
 import com.example.acledaproject.utils.urlResource
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -195,7 +195,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             if (position == 0) {
                 gotoScan()
             } else if (position == 1) {
-
+                DoScanMlKitActivity.gotoBarcodeScanningActivity(mContext)
             }
             dialog.dismiss()
         }
