@@ -123,7 +123,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             HomeItemModel(
                 "scan_qr",
                 "Scan QR",
-                R.drawable.ic_scan_qr,
+                R.drawable.ic_qrcode_home,
             ),
             HomeItemModel(
                 "account",

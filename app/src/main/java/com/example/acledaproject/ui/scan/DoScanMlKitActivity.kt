@@ -99,7 +99,7 @@ class DoScanMlKitActivity : BaseActivity() {
     } else {
       // user did not grant permissions - we can't use the camera
       Toast.makeText(this,
-        "Camera permission required",
+        "Camera permission required.",
         Toast.LENGTH_LONG
       ).show()
       finish()
@@ -147,14 +147,11 @@ class DoScanMlKitActivity : BaseActivity() {
         .build()
 
       // define the actual functionality of our analysis use case
-      analysisUseCase.setAnalyzer(
-        Executors.newSingleThreadExecutor(),
-        { imageProxy ->
+      analysisUseCase.setAnalyzer(Executors.newSingleThreadExecutor()) { imageProxy ->
           processImageProxy(scanner, imageProxy)
-        }
-      )
+      }
 
-      // configure to use the back camera
+        // configure to use the back camera
       val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
       try {

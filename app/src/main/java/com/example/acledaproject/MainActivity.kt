@@ -3,6 +3,8 @@ package com.example.acledaproject
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.KeyEvent
+import android.widget.Toast
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -23,6 +25,9 @@ class MainActivity : BaseActivity() {
         fun gotoMainActivity(mContext : Context) {
             mContext.startActivity(Intent(mContext, MainActivity::class.java))
         }
+
+        private var lastPressedTime: Long = 0
+        private const val PERIOD = 2000
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,5 +93,20 @@ class MainActivity : BaseActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+        if (event.keyCode == KeyEvent.KEYCODE_BACK) {
+            if (event.action == KeyEvent.ACTION_DOWN) {
+                if (event.downTime - lastPressedTime < PERIOD) {
+                    finishAffinity()
+                } else {
+                    Toast.makeText(this, resources.getString(R.string.please_press_back_again_to_exit), Toast.LENGTH_SHORT).show()
+                    lastPressedTime = event.eventTime
+                }
+                return true
+            }
+        }
+        return false
     }
 }
