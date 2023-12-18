@@ -51,22 +51,29 @@
                     android:layout_marginEnd="@dimen/size_10"
                     android:focusable="true" />
 
-                <ImageView
+                <RelativeLayout
                     android:id="@+id/qrCode"
                     android:layout_alignParentEnd="true"
                     android:layout_centerInParent="true"
-                    android:layout_marginEnd="@dimen/size_10"
-                    android:layout_width="@dimen/size_25"
-                    android:layout_height="@dimen/size_25"
-                    android:padding="@dimen/size_5"
                     android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/app_name"
-                    android:background="@drawable/custom_circle"
-                    android:backgroundTint="@color/red"
+                    android:layout_width="wrap_content"
                     android:clickable="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_qrcode"
-                    android:focusable="true" />
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:focusable="true"
+                    android:layout_marginEnd="@dimen/size_10"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="@dimen/size_25"
+                        android:layout_height="@dimen/size_25"
+                        android:padding="@dimen/size_5"
+                        android:contentDescription="@string/app_name"
+                        android:background="@drawable/custom_circle"
+                        android:backgroundTint="@color/red"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/ic_qrcode" />
+
+                </RelativeLayout>
 
             </RelativeLayout>
 

@@ -21,6 +21,5 @@ class QRCodeActivity : BaseBindActivity<ActivityQrcodeBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
     }
 }

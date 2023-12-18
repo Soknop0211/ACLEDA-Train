@@ -18,6 +18,10 @@ import com.example.acledaproject.ui.adapter.HomeExtraCategoryAdapter
 import com.example.acledaproject.ui.adapter.HomeMainCategoryAdapter
 import com.example.acledaproject.ui.adapter.ImageSliderAdapter
 import com.example.acledaproject.ui.scan.DoScanMlKitActivity
+import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity
+import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity.Companion.CodeScannerSt
+import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity.Companion.SimpleBarcodeScanner
+import com.example.acledaproject.ui.scan.ScanQrByServiceGoogleActivity
 import com.example.acledaproject.utils.urlResource
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -59,19 +63,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             ItemImageSliderModel(
                 "loan",
                 "Loan",
-                "Get your loan for business expansion or other user quickly",
+                "Get your loan for business expansion or other user quickly.",
                 R.drawable.img_loan
             ),
             ItemImageSliderModel(
                 "qr_code",
                 "QR Code",
-                "Offer QR Code or POS for your business",
+                "Offer QR Code or POS for your business.",
                 R.drawable.img_scan
             ),
             ItemImageSliderModel(
                 "interest",
                 "Interest",
-                "Get high interest for term deposits",
+                "Get high interest for term deposits.",
                 R.drawable.img_interest
             ),
         )
@@ -187,15 +191,33 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun alertOption(mContext: Context?) {
         if (mContext == null) return
 
-        val options = arrayOf("Zxing Lib", "MLKit Lib")
+        val options = arrayOf(
+            "1. ZXING LIB",
+            "2. CODE SCANNER LIB",
+            "3. MLKIT LIB",
+            "4. GOOGLE LIB",
+            "5. SIMPLE BARCODE SCANNER LIB"
+        )
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(mContext)
         builder.setTitle("Scan Option :")
         builder.setItems(options) { dialog, position ->
-            if (position == 0) {
-                gotoScan()
-            } else if (position == 1) {
-                DoScanMlKitActivity.gotoBarcodeScanningActivity(mContext)
+            when (position) {
+                0 -> {
+                    gotoScan()
+                }
+                1 -> {
+                    ScanQrByCodeScannerActivity.start(mContext, CodeScannerSt)
+                }
+                2 -> {
+                    DoScanMlKitActivity.gotoBarcodeScanningActivity(mContext)
+                }
+                3 -> {
+                    ScanQrByServiceGoogleActivity.start(mContext)
+                }
+                4 -> {
+                    ScanQrByCodeScannerActivity.start(mContext, SimpleBarcodeScanner)
+                }
             }
             dialog.dismiss()
         }

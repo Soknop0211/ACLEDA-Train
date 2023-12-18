@@ -14,6 +14,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.acledaproject.base.BaseActivity
 import com.example.acledaproject.databinding.ActivityMainBinding
 import com.example.acledaproject.ui.DetailItemActivity
+import com.example.acledaproject.ui.scan.QRCodeActivity
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : BaseActivity() {
@@ -66,6 +67,15 @@ class MainActivity : BaseActivity() {
 
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
+        }
+
+        // Action
+        binding.appBarMain.qrCode.setOnClickListener { view ->
+            // Delay Click
+            view.isEnabled = false
+            view.postDelayed({ view.isEnabled = true }, 500)
+
+            QRCodeActivity.start(this)
         }
     }
 

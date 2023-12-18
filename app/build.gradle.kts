@@ -74,4 +74,10 @@ dependencies {
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
+    implementation("com.google.android.gms:play-services-vision:20.1.3")
+
+    implementation("com.github.yuriy-budiyev:code-scanner:2.3.0")
+
+    implementation("com.github.bobekos:SimpleBarcodeScanner:1.0.23")
+
 }

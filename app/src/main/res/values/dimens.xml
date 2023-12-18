@@ -10,6 +10,7 @@
     <dimen name="size_25">25dp</dimen>
     <dimen name="size_35">35dp</dimen>
     <dimen name="size_5">5dp</dimen>
+    <dimen name="size_6">6dp</dimen>
     <dimen name="size_30">30dp</dimen>
     <dimen name="dp_40">40dp</dimen>
     <dimen name="dp_45">45dp</dimen>
@@ -19,5 +20,6 @@
     <dimen name="size_8">8dp</dimen>
     <dimen name="size_2">2dp</dimen>
     <dimen name="size_4">4dp</dimen>
+    <dimen name="size_3">3dp</dimen>
 
 </resources>
