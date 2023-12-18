@@ -45,8 +45,13 @@ class ScanQrByCodeScannerActivity : BaseBindActivity<ActivityScanQrByCodeScanner
             isCodeScanner = true
             initCodeScanner()
         } else {
-            mBinding.barcodeView.visibility = View.VISIBLE
+            mBinding.barCodeLayout.visibility = View.VISIBLE
             isCodeScanner = false
+
+            mBinding.overlay.post {
+                mBinding.overlay.setViewFinder()
+            }
+
         }
     }
 

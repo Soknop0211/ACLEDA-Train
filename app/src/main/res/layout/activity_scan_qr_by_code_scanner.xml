@@ -27,11 +27,24 @@
             app:frameVerticalBias="0.5"
             app:maskColor="#77000000"/>
 
-        <com.bobekos.bobek.scanner.BarcodeView
-            android:id="@+id/barcodeView"
+        <RelativeLayout
+            android:id="@+id/barCodeLayout"
             android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content">
+
+            <com.bobekos.bobek.scanner.BarcodeView
+                android:id="@+id/barcodeView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+            <com.example.acledaproject.ui.scan.ViewFinderOverlay
+                android:id="@+id/overlay"
+                android:layerType="software"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </RelativeLayout>
 
     </FrameLayout>
 

@@ -168,7 +168,7 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
                             cameraSource.stop()
                             mBinding.barcodeLine.clearAnimation()
                             mBinding.barcodeLine.visibility = View.GONE
-                            mBinding.rescan.visibility = View.VISIBLE
+                            // mBinding.rescan.visibility = View.VISIBLE
                             checkValueType(scannedBarcode,valueType)
                         }
                     }else{
