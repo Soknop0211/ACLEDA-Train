@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/line_color"
+        tools:context=".ui.scan.QRCodeActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:contentScrim="?attr/colorPrimary"
+                android:background="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:background="@color/primary"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/iconBack"
+                                android:layout_width="@dimen/size_25"
+                                android:layout_height="@dimen/size_25"
+                                android:layout_gravity="center_vertical"
+                                android:contentDescription="@string/app_name"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:src="@drawable/baseline_arrow_back_ios_24"
+                                android:focusable="true"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:id="@+id/titleToolbar"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="@dimen/size_5"
+                                android:layout_weight="1"
+                                android:gravity="center"
+                                android:maxLines="2"
+                                android:text="@string/my_khqr"
+                                android:textColor="@color/white"
+                                android:textSize="18dp"
+                                tools:ignore="SpUsage"
+                                android:textStyle="bold"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/size_30"
+                                android:layout_height="@dimen/size_30"
+                                android:layout_gravity="center_vertical"
+                                android:contentDescription="@string/app_name"
+                                android:background="?attr/selectableItemBackgroundBorderless"
+                                android:clickable="true"
+                                android:layout_marginEnd="@dimen/size_10"
+                                android:src="@drawable/splash_screen_ac"
+                                android:focusable="true"/>
+
+                        </LinearLayout>
+
+                    </androidx.appcompat.widget.Toolbar>
+
+                </LinearLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_below="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="30dp"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <RelativeLayout
+                            android:id="@+id/header"
+                            android:layout_width="match_parent"
+                            android:layout_height="50dp"
+                            android:background="#E1232E">
+
+                            <ImageView
+                                android:layout_width="100dp"
+                                android:layout_height="40dp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/kh_qrcode_logo" />
+
+                        </RelativeLayout>
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/ic_triangle_base_24"
+                            android:layout_below="@id/header"
+                            android:rotation="-90"
+                            android:layout_alignParentEnd="true"/>
+                    </RelativeLayout>
+
+                    <TextView
+                        android:id="@+id/receiver_name_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SOK NOP"
+                        android:textSize="18sp"
+                        android:layout_marginStart="30dp"/>
+
+                    <TextView
+                        android:id="@+id/amount_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="30dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="3,000 KHR"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="1dp"
+                        android:textSize="24sp"
+                        android:maxLines="1"
+                        android:textColor="@color/gray"
+                        android:text="- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -"/>
+
+                    <ImageView
+                        android:id="@+id/image_qr"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
+                        android:layout_marginTop="20dp"
+                        android:src="@drawable/kh_qrcode"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="30dp"
+                        android:contentDescription="@string/app_name" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginVertical="@dimen/size_10"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_20"
+                    android:gravity="center"
+                    android:background="@drawable/custom_card_bg"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="Wallet Account KHQR | 097 979 979 7"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        tools:ignore="SpUsage"
+                        android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/size_25"
+                        android:layout_height="@dimen/size_25"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:src="@drawable/baseline_arrow_drop_down_24"
+                        android:focusable="true"
+                        app:tint="@color/white" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginVertical="@dimen/size_20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="36dp"
+                            android:layout_height="@dimen/size_35"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/size_10"
+                            android:background="@drawable/custom_circle"
+                            android:backgroundTint="@color/red"
+                            android:clickable="true"
+                            android:contentDescription="@string/app_name"
+                            android:focusable="true"
+                            android:padding="@dimen/size_5"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_qrcode" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_5"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="Save"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_marginEnd="@dimen/size_10"
+                            android:layout_width="@dimen/size_35"
+                            android:layout_height="@dimen/size_35"
+                            android:padding="@dimen/size_5"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/app_name"
+                            android:background="@drawable/custom_circle"
+                            android:backgroundTint="@color/red"
+                            android:clickable="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_qrcode"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_5"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="Set Amount"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_marginEnd="@dimen/size_10"
+                            android:layout_width="@dimen/size_35"
+                            android:layout_height="@dimen/size_35"
+                            android:padding="@dimen/size_5"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/app_name"
+                            android:background="@drawable/custom_circle"
+                            android:backgroundTint="@color/red"
+                            android:clickable="true"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_qrcode"
+                            android:focusable="true" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_5"
+                            android:gravity="center"
+                            android:maxLines="2"
+                            android:text="Share Link"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

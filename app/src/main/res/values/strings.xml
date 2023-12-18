@@ -29,5 +29,6 @@
     <string name="scan_qr">Scan QR</string>
     <string name="barcode_value">Barcode value</string>
     <string name="please_press_back_again_to_exit">Please press back again to exit.</string>
+    <string name="my_khqr">My KHQR</string>
 
 </resources>
