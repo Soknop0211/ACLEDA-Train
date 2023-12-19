@@ -21,4 +21,6 @@
 
     <color name="barcode_reticle_background">#99000000</color>
     <color name="barcode_reticle_stroke">#ffffff</color>
+    <color name="light_grey">#EAEDED</color>
+
 </resources>

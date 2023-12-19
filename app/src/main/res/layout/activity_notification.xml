@@ -6,24 +6,24 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/light_grey"
         tools:context=".ui.DetailItemActivity">
 
-        <include
-            android:id="@+id/toolbar"
-            layout="@layout/custom_toolbar"/>
-
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="@dimen/size_5"
-            android:layout_marginEnd="@dimen/size_25"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:maxLines="2"
-            android:text="This function will available soon . . ."
-            android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/custom_toolbar"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/recyclerView"/>
+
+        </LinearLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

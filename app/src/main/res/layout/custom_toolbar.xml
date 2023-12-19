@@ -47,6 +47,7 @@
                         android:layout_marginStart="@dimen/size_5"
                         android:layout_marginEnd="@dimen/size_25"
                         android:layout_weight="1"
+                        android:layout_gravity="center|start"
                         android:gravity="center|start"
                         android:maxLines="2"
                         android:text="Title Toolbar"
@@ -54,6 +55,17 @@
                         android:textSize="18dp"
                         tools:ignore="SpUsage"
                         android:textStyle="bold"/>
+
+                    <ImageView
+                        android:layout_width="@dimen/size_30"
+                        android:layout_height="@dimen/size_30"
+                        android:layout_gravity="center_vertical"
+                        android:contentDescription="@string/app_name"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:clickable="true"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:src="@drawable/splash_screen_ac"
+                        android:focusable="true"/>
 
                 </LinearLayout>
 

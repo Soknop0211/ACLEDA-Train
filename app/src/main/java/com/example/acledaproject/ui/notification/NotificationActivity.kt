@@ -4,9 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseBindActivity
 import com.example.acledaproject.databinding.ActivityNotificationBinding
+import com.example.acledaproject.ui.adapter.HomeMainCategoryAdapter
 
 class NotificationActivity : BaseBindActivity<ActivityNotificationBinding>() {
 
@@ -26,6 +29,11 @@ class NotificationActivity : BaseBindActivity<ActivityNotificationBinding>() {
         val galleryViewModel =
             ViewModelProvider(this).get(NotificationViewModel::class.java)
 
+        val mList = arrayListOf(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
+        mBinding.recyclerView.apply {
+            layoutManager = LinearLayoutManager(this@NotificationActivity)
+            adapter = NotificationAdapter(mList)
+        }
 
     }
 
