@@ -31,5 +31,6 @@
     <string name="please_press_back_again_to_exit">Please press back again to exit.</string>
     <string name="my_khqr">My KHQR</string>
     <string name="rescan">Rescan</string>
+    <string name="dot_line">- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</string>
 
 </resources>

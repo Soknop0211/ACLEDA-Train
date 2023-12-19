@@ -187,17 +187,21 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
                         "Encryption type - ${scannedBarcode.wifi.encryptionType}"
             }
             Barcode.URL ->{
+                Toast.makeText(this, scannedBarcode.url.title, Toast.LENGTH_SHORT).show()
                 mBinding.scannedText.text = "URL -${scannedBarcode.url.title}, ${scannedBarcode.url.url}"
             }
             Barcode.PRODUCT ->{
+                Toast.makeText(this, scannedBarcode.displayValue, Toast.LENGTH_SHORT).show()
                 mBinding.scannedText.text = "Product - ${scannedBarcode.displayValue}"
             }
             Barcode.EMAIL ->{
+                Toast.makeText(this, scannedBarcode.email.address, Toast.LENGTH_SHORT).show()
                 mBinding.scannedText.text = "Email address- ${scannedBarcode.email.address}\n, " +
                         "${scannedBarcode.email.subject}\n,${scannedBarcode.email.body}\n," +
                         "${scannedBarcode.email.type}"
             }
             Barcode.PHONE -> {
+                Toast.makeText(this, scannedBarcode.phone.number, Toast.LENGTH_SHORT).show()
                 mBinding.scannedText.text = "Phone number- ${scannedBarcode.phone.number}"
             }
             else ->{

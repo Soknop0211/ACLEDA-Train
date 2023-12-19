@@ -35,7 +35,10 @@ android {
     }
     buildFeatures {
         viewBinding = true
-        dataBinding = true
+    }
+
+    dataBinding {
+        enable = true
     }
 }
 
@@ -71,13 +74,18 @@ dependencies {
 
     // ML Kit barcode scanning dependency
     implementation("com.google.mlkit:barcode-scanning:17.2.0")
+    implementation("com.google.android.gms:play-services-vision:20.1.3")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:1.1.5")
 
-    implementation("com.google.android.gms:play-services-vision:20.1.3")
 
     implementation("com.github.yuriy-budiyev:code-scanner:2.3.0")
 
     implementation("com.github.bobekos:SimpleBarcodeScanner:1.0.23")
+
+    // EMV Generate QR
+    implementation("com.github.mvallim:emv-qrcode:0.1.2") {
+        exclude(group = "org.aspectj", module = "aspectjrt")
+    }
 
 }

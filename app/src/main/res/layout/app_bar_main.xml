@@ -38,6 +38,7 @@
                     tools:ignore="RtlSymmetry" />
 
                 <ImageView
+                    android:id="@+id/notification"
                     android:layout_toStartOf="@+id/qrCode"
                     android:layout_width="@dimen/size_25"
                     android:layout_height="@dimen/size_25"

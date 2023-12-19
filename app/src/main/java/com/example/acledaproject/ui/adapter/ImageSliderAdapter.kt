@@ -35,6 +35,7 @@ class ImageSliderAdapter(
         // Init Data
         Glide.with(mContext)
             .load(mItem.logo)
+            .placeholder(R.drawable.no_image)
             .into(mImageView)
 
         addressTv.text = mItem.description

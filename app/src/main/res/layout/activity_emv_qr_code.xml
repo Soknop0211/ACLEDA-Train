@@ -143,7 +143,7 @@
                             android:textSize="24sp"
                             android:textStyle="bold"
                             android:textColor="@color/black"
-                            android:text="3,000"/>
+                            android:text="0"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -167,10 +167,9 @@
                     <ImageView
                         android:id="@+id/image_qr"
                         android:layout_width="wrap_content"
-                        android:layout_height="200dp"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/kh_qrcode"
                         android:layout_gravity="center"
-                        android:scaleType="fitXY"
                         android:layout_marginHorizontal="30dp"
                         android:layout_marginBottom="30dp"
                         android:layout_marginTop="10dp"
@@ -194,6 +193,7 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/size_15"
                     android:gravity="center"
+                    android:alpha=".8"
                     android:background="@drawable/custom_card_bg"
                     android:orientation="horizontal">
 

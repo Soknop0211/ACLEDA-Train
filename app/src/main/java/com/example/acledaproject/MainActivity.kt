@@ -14,7 +14,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.acledaproject.base.BaseActivity
 import com.example.acledaproject.databinding.ActivityMainBinding
 import com.example.acledaproject.ui.DetailItemActivity
-import com.example.acledaproject.ui.scan.QRCodeActivity
+import com.example.acledaproject.ui.notification.NotificationActivity
+import com.example.acledaproject.ui.qrcode.EmvQrCodeActivity
+import com.example.acledaproject.ui.qrcode.QRCodeActivity
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : BaseActivity() {
@@ -75,7 +77,15 @@ class MainActivity : BaseActivity() {
             view.isEnabled = false
             view.postDelayed({ view.isEnabled = true }, 500)
 
-            QRCodeActivity.start(this)
+            EmvQrCodeActivity.start(this)
+        }
+
+        binding.appBarMain.notification.setOnClickListener { view ->
+            // Delay Click
+            view.isEnabled = false
+            view.postDelayed({ view.isEnabled = true }, 500)
+
+            NotificationActivity.start(this)
         }
     }
 

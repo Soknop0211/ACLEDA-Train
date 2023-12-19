@@ -6,7 +6,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseFragment
 import com.example.acledaproject.databinding.FragmentHomeBinding
@@ -26,6 +28,8 @@ import com.example.acledaproject.utils.urlResource
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
 import com.journeyapps.barcodescanner.ScanOptions
+import io.reactivex.annotations.NonNull
+import java.util.Collections
 import java.util.Timer
 import java.util.TimerTask
 
@@ -34,14 +38,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override val layoutResource: Int get() = R.layout.fragment_home
     private var mListSlide : List<ItemImageSliderModel> = ArrayList()
+    private var mCategoryList = ArrayList<HomeItemModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         // Main Category
+        mCategoryList = getListHomeMenu()
         mBinding.itemListTop.apply {
             layoutManager = GridLayoutManager(requireContext(), 3, GridLayoutManager.VERTICAL, false)
-            adapter = HomeMainCategoryAdapter(getListHomeMenu()) {
+            adapter = HomeMainCategoryAdapter(mCategoryList) {
                 if (it.id == "scan_qr") {
                     alertOption(mActivity)
                 }
@@ -56,7 +62,30 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
         //Slide
         initHappeningSlide(requireContext())
+
+        val itemTouchHelper = ItemTouchHelper(simpleCallback)
+        itemTouchHelper.attachToRecyclerView(mBinding.itemListTop)
     }
+
+    private var simpleCallback: ItemTouchHelper.SimpleCallback = object : ItemTouchHelper.SimpleCallback(
+        ItemTouchHelper.UP or ItemTouchHelper.DOWN or ItemTouchHelper.START or ItemTouchHelper.END,
+        0
+    ) {
+        override fun onMove(
+            @NonNull recyclerView: RecyclerView,
+            @NonNull viewHolder: RecyclerView.ViewHolder,
+            @NonNull target: RecyclerView.ViewHolder
+        ): Boolean {
+            val fromPosition = viewHolder.adapterPosition
+            val toPosition = target.adapterPosition
+            Collections.swap(mCategoryList, fromPosition, toPosition)
+            recyclerView.adapter!!.notifyItemMoved(fromPosition, toPosition)
+            return false
+        }
+
+        override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {}
+    }
+
 
     private fun initHappeningSlide(mContext : Context) {
         val happeningNowList = listOf(
