@@ -88,4 +88,6 @@ dependencies {
         exclude(group = "org.aspectj", module = "aspectjrt")
     }
 
+    //KH QR
+    // implementation("kh.gov.nbc.bakong_khqr:sdk-java:{current_version}")
 }

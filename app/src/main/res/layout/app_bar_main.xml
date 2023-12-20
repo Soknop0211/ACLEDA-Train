@@ -67,12 +67,12 @@
                     <ImageView
                         android:layout_width="@dimen/size_25"
                         android:layout_height="@dimen/size_25"
-                        android:padding="@dimen/size_5"
+                        android:padding="@dimen/size_3"
                         android:contentDescription="@string/app_name"
-                        android:background="@drawable/custom_circle"
-                        android:backgroundTint="@color/red"
+                        android:background="@drawable/custom_bg_card_5dp"
+                        android:backgroundTint="@color/red_old"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_qrcode" />
+                        android:src="@drawable/kh_qr_logo" />
 
                 </RelativeLayout>
 

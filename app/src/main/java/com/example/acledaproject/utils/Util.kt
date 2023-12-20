@@ -23,7 +23,7 @@ class Util {
             })
         }
 
-        fun getQRCodeImage512(width : Int, text: String): Bitmap? {
+        fun getQRCodeImage512(text: String): Bitmap? {
             val hints = Hashtable<EncodeHintType, String?>()
             hints[EncodeHintType.CHARACTER_SET] = "UTF-8"
             val writer = QRCodeWriter()

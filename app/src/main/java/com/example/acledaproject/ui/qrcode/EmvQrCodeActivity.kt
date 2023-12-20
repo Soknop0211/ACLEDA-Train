@@ -6,8 +6,6 @@ import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Log
 import br.com.fluentvalidator.context.ValidationResult
-import br.com.fluentvalidator.predicate.ComparablePredicate.equalTo
-import com.bumptech.glide.Glide
 import com.emv.qrcode.core.model.mpm.TagLengthString
 import com.emv.qrcode.decoder.mpm.DecoderMpm
 import com.emv.qrcode.model.mpm.AdditionalDataField
@@ -27,16 +25,24 @@ import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseBindActivity
 import com.example.acledaproject.databinding.ActivityEmvQrCodeBinding
 import com.example.acledaproject.utils.Util
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.WriterException
+import com.journeyapps.barcodescanner.BarcodeEncoder
 
 
 class EmvQrCodeActivity : BaseBindActivity<ActivityEmvQrCodeBinding>() {
 
     override val layoutId = R.layout.activity_emv_qr_code
 
+    private var barcodeEncoder: BarcodeEncoder? = null
+
     companion object {
         fun start(mContext : Context) {
             mContext.startActivity(Intent(mContext, EmvQrCodeActivity::class.java))
         }
+
+        private val qrCode = "00020101021230190015john_smith@devb5204599953038405405500.05802KH5910John Smith6010Phnom Penh62640111Invoice#0690314Coffee Khlaing0727Cooooooooooooooooooounter 299170013161406568381963040F76";
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,14 +95,24 @@ class EmvQrCodeActivity : BaseBindActivity<ActivityEmvQrCodeBinding>() {
             finish()
         }
 
-        // Init Generate Qr
-        val qrCodeImageBitmap: Bitmap? = Util.getQRCodeImage512(512, merchantPresentMode.toString())
+        // Decode
+        testSuccessDecode(merchantPresentMode.toString())
+
+        // Init Generate Qr 1
+        val qrCodeImageBitmap: Bitmap? = Util.getQRCodeImage512(merchantPresentMode.toString())
         if (qrCodeImageBitmap != null) {
             mBinding.imageQr.setImageBitmap(qrCodeImageBitmap)
         }
 
-        // Decode
-        testSuccessDecode(merchantPresentMode.toString())
+        // Init Generate Qr 2
+        barcodeEncoder = BarcodeEncoder()
+
+        try {
+            val qrCode = barcodeEncoder?.encodeBitmap(merchantPresentMode.toString(), BarcodeFormat.QR_CODE, 512, 512)
+            mBinding.imageQr.setImageBitmap(qrCode)
+        } catch (e: WriterException) {
+            e.printStackTrace()
+        }
     }
 
     private val merchanAccountInformationReserved: MerchantAccountInformationTemplate

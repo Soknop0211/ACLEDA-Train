@@ -18,6 +18,7 @@
     <color name="primary_dark">#1a3351</color>
 
     <color name="red">#f84748</color>
+    <color name="red_old">#e1232e</color>
 
     <color name="barcode_reticle_background">#99000000</color>
     <color name="barcode_reticle_stroke">#ffffff</color>

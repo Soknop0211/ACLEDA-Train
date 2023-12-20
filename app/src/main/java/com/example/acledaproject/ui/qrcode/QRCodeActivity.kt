@@ -30,7 +30,7 @@ class QRCodeActivity : BaseBindActivity<ActivityQrcodeBinding>() {
 
         // Init Generate Qr
         Util.widthHeightLayout(mBinding.imageQr) { width, _ ->
-            val qrCodeImageBitmap: Bitmap? = Util.getQRCodeImage512(width, "SokNop@@123456789$$")
+            val qrCodeImageBitmap: Bitmap? = Util.getQRCodeImage512("SokNop@@123456789$$")
             if (qrCodeImageBitmap != null) {
                 // mBinding.imageQr.setImageBitmap(qrCodeImageBitmap)
                 Glide.with(this).load(qrCodeImageBitmap).into(mBinding.imageQr)
