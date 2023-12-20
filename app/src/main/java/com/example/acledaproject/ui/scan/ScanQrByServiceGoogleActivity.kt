@@ -15,9 +15,14 @@ import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import br.com.fluentvalidator.context.ValidationResult
+import com.emv.qrcode.decoder.mpm.DecoderMpm
+import com.emv.qrcode.model.mpm.MerchantPresentedMode
+import com.emv.qrcode.validators.Crc16Validate
 import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseBindActivity
 import com.example.acledaproject.databinding.ActivityScanQrByCamViewBinding
+import com.example.acledaproject.utils.MessageUtils
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
@@ -206,10 +211,38 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
             }
             else ->{
                 mBinding.scannedText.text = scannedValue
-                Toast.makeText(this, scannedValue, Toast.LENGTH_SHORT).show()
-                finish()
+                if (checkIsKHQR(scannedValue)) {    // KHQR
+                    val mDataDecode : MerchantPresentedMode = DecoderMpm.decode(
+                        scannedValue,
+                        MerchantPresentedMode::class.java
+                    )
+
+                    val result : String = "∙ Country code : ${mDataDecode.countryCode.value}\n" +
+                                "∙ Merchant Name : ${mDataDecode.merchantName.value}\n" +
+                            "∙ TransactionAmount : ${mDataDecode.transactionAmount.value}"
+
+                    MessageUtils.alertErrorConfirm(this, "KHQR", result) {
+                        finish()
+                    }
+                } else {
+                    MessageUtils.alertErrorConfirm(this, "ALERT", scannedValue) {
+                        finish()
+                    }
+                }
             }
         }
+    }
+
+    private fun checkIsKHQR(resultEnCode : String?) : Boolean {
+        if (resultEnCode == null) return false
+
+        // Check encode invalid
+        val validationResult : ValidationResult = Crc16Validate.validate(resultEnCode)
+        if (!validationResult.isValid) {
+            return false
+        }
+
+        return true
     }
 
     override fun onDestroy() {

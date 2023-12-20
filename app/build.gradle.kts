@@ -89,5 +89,5 @@ dependencies {
     }
 
     //KH QR
-    // implementation("kh.gov.nbc.bakong_khqr:sdk-java:{current_version}")
+    // implementation("kh.gov.nbc.bakong_khqr:sdk-java:1.0.6")
 }

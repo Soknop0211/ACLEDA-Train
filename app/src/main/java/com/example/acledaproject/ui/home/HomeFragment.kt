@@ -221,11 +221,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         if (mContext == null) return
 
         val options = arrayOf(
-            "1. ZXING LIB",
-            "2. CODE SCANNER LIB",
-            "3. MLKIT LIB",
-            "4. GOOGLE LIB",
-            "5. SIMPLE BARCODE SCANNER LIB"
+            "1. ZXING Lib",
+            "2. Code Scanner Lib",
+            "3. MLKIT Lib",
+            "4. GOOGLE Lib",
+            "5. Simple Barcode Scanner Lib"
         )
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(mContext)

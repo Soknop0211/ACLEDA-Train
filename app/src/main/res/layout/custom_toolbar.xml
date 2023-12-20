@@ -4,14 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar_custom"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/white">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:theme="@style/Theme.AcledaProject.AppBarOverlay">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,9 +18,10 @@
             android:orientation="vertical">
 
             <androidx.appcompat.widget.Toolbar
-                android:background="@color/primary"
+                android:background="@drawable/custom_bg_gradient_toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:popupTheme="@style/Theme.AcledaProject.PopupOverlay">
 
                 <LinearLayout
                     android:layout_width="match_parent"

@@ -6,15 +6,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.acledaproject.R
 import com.example.acledaproject.databinding.NotificationItemLayoutBinding
 
-class NotificationAdapter(private val mList: ArrayList<Int>) :
+class NotificationAdapter(private val mList: ArrayList<Int>, private val mOnClickListener : () -> Unit) :
     RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: NotificationItemLayoutBinding): RecyclerView.ViewHolder(binding.root) {
-        fun onBind(position: Int) {
+        fun onBind(position: Int, mOnClickListener : () -> Unit) {
             if (position % 3 == 0){
                 binding.iconBank.setImageResource(R.drawable.ic_qrcode_home)
             } else {
                 binding.iconBank.setImageResource(R.drawable.acleda_logo)
+            }
+            binding.mainLayout.setOnClickListener {
+                // mOnClickListener.invoke()
             }
         }
     }
@@ -30,7 +33,7 @@ class NotificationAdapter(private val mList: ArrayList<Int>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.onBind(position)
+        holder.onBind(position, mOnClickListener)
     }
 
 }

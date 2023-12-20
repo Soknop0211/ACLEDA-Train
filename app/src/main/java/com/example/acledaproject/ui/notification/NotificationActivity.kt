@@ -32,9 +32,10 @@ class NotificationActivity : BaseBindActivity<ActivityNotificationBinding>() {
         val mList = arrayListOf(1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2)
         mBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(this@NotificationActivity)
-            adapter = NotificationAdapter(mList)
+            adapter = NotificationAdapter(mList) {
+                // Dialog Show
+            }
         }
-
     }
 
     private fun initView() {

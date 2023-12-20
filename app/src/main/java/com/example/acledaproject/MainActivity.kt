@@ -16,8 +16,8 @@ import com.example.acledaproject.databinding.ActivityMainBinding
 import com.example.acledaproject.ui.DetailItemActivity
 import com.example.acledaproject.ui.notification.NotificationActivity
 import com.example.acledaproject.ui.qrcode.EmvQrCodeActivity
-import com.example.acledaproject.ui.qrcode.QRCodeActivity
 import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : BaseActivity() {
 
@@ -87,6 +87,18 @@ class MainActivity : BaseActivity() {
 
             NotificationActivity.start(this)
         }
+
+        /* // Change icon drawer
+        val toggle = ActionBarDrawerToggle(
+            this,  // Activity
+            drawerLayout,  // DrawerLayout
+            R.string.rescan,  // Open drawer description
+            R.string.rescan // Close drawer description
+        )
+        toggle.isDrawerIndicatorEnabled = false
+        toggle.setHomeAsUpIndicator(R.drawable.ic_notification)
+        toggle.syncState() */
+
     }
 
 
