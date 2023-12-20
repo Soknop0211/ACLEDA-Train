@@ -4,12 +4,11 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseBindActivity
 import com.example.acledaproject.databinding.ActivityNotificationBinding
-import com.example.acledaproject.ui.adapter.HomeMainCategoryAdapter
+import com.example.acledaproject.viewmodel.NotificationViewModel
 
 class NotificationActivity : BaseBindActivity<ActivityNotificationBinding>() {
 

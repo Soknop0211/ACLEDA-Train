@@ -9,10 +9,10 @@ import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseBindActivity
 import com.example.acledaproject.databinding.ActivityEmvQrCodeBinding
 import com.example.acledaproject.utils.Util
+import com.example.acledaproject.viewmodel.EmvViewModel
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.WriterException
 import com.journeyapps.barcodescanner.BarcodeEncoder
-
 
 class EmvQrCodeActivity : BaseBindActivity<ActivityEmvQrCodeBinding>() {
 
@@ -32,8 +32,7 @@ class EmvQrCodeActivity : BaseBindActivity<ActivityEmvQrCodeBinding>() {
         }
 
         // init view model
-        val mEmvViewModel =
-            ViewModelProvider(this)[EmvViewModel::class.java]
+        val mEmvViewModel = ViewModelProvider(this)[EmvViewModel::class.java]
 
         mEmvViewModel.encodeGenerateQR()
 

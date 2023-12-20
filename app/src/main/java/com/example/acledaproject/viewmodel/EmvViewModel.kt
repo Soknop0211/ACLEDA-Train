@@ -1,4 +1,4 @@
-package com.example.acledaproject.ui.qrcode
+package com.example.acledaproject.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -53,7 +53,7 @@ class EmvViewModel : ViewModel() {
 
         merchantPresentMode.setCountryCode("KH")
         merchantPresentMode.setMerchantCategoryCode("4111")
-        merchantPresentMode.setMerchantCity("BEIJING")
+        merchantPresentMode.setMerchantCity("PHNOM PENH")
         merchantPresentMode.merchantInformationLanguage = merchantInformationLanguage
 
         merchantPresentMode.setMerchantName("ACCOUNT NOP")

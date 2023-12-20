@@ -1,4 +1,4 @@
-package com.example.acledaproject.ui.notification
+package com.example.acledaproject.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
