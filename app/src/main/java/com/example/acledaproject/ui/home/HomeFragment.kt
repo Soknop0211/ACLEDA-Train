@@ -1,14 +1,19 @@
 package com.example.acledaproject.ui.home
 
+import android.Manifest
 import android.content.Context
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.emv.qrcode.decoder.mpm.DecoderMpm
+import com.emv.qrcode.model.mpm.MerchantPresentedMode
 import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseFragment
 import com.example.acledaproject.databinding.FragmentHomeBinding
@@ -24,6 +29,8 @@ import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity
 import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity.Companion.CodeScannerSt
 import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity.Companion.SimpleBarcodeScanner
 import com.example.acledaproject.ui.scan.ScanQrByServiceGoogleActivity
+import com.example.acledaproject.utils.MessageUtils
+import com.example.acledaproject.utils.Util
 import com.example.acledaproject.utils.urlResource
 import com.journeyapps.barcodescanner.ScanContract
 import com.journeyapps.barcodescanner.ScanIntentResult
@@ -33,7 +40,7 @@ import java.util.Collections
 import java.util.Timer
 import java.util.TimerTask
 
-
+private const val CAMERA_PERMISSION_REQUEST_CODE = 1
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override val layoutResource: Int get() = R.layout.fragment_home
@@ -221,12 +228,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     private fun alertOption(mContext: Context?) {
         if (mContext == null) return
 
-        val options = arrayOf(
+        /*val options = arrayOf(
             "1. ZXING Lib",
             "2. Code Scanner Lib",
             "3. MLKIT Lib",
             "4. GOOGLE Lib",
             "5. Simple Barcode Scanner Lib"
+        )*/
+        val options = arrayOf(
+            "1. ZXING Lib",
+            "2. MLKIT Lib",
         )
 
         val builder: AlertDialog.Builder = AlertDialog.Builder(mContext)
@@ -237,13 +248,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                     gotoScan()
                 }
                 1 -> {
-                    ScanQrByCodeScannerActivity.start(mContext, CodeScannerSt)
+                    if (hasCameraPermission()) {
+                        ScanQrByServiceGoogleActivity.start(mContext)
+                    } else {
+                        requestPermission()
+                    }
                 }
                 2 -> {
                     DoScanMlKitActivity.gotoBarcodeScanningActivity(mContext)
                 }
                 3 -> {
-                    ScanQrByServiceGoogleActivity.start(mContext)
+                    ScanQrByCodeScannerActivity.start(mContext, CodeScannerSt)
                 }
                 4 -> {
                     ScanQrByCodeScannerActivity.start(mContext, SimpleBarcodeScanner)
@@ -267,7 +282,63 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     private val barcodeLauncher = registerForActivityResult(ScanContract()) { result: ScanIntentResult ->
         if (result.contents != null) {
-            Toast.makeText(mActivity, result.contents, Toast.LENGTH_LONG).show()
+            // Toast.makeText(mActivity, result.contents, Toast.LENGTH_LONG).show()
+            if (Util.checkIsKHQR(result.contents)) {    // KHQR
+                /*val mDataDecode : MerchantPresentedMode = DecoderMpm.decode(
+                    result.contents,
+                    MerchantPresentedMode::class.java
+                )*/
+
+                /*val result : String = "∙ Country code : ${mDataDecode.countryCode.value}\n" +
+                            "∙ Merchant Name : ${mDataDecode.merchantName.value}\n" +
+                        "∙ TransactionAmount : ${mDataDecode.transactionAmount.value}" */
+
+                MessageUtils.initAlertDialog(
+                    mActivity!!,
+                    Util.getEncodeTag(result.contents)) {
+                }
+
+            } else {
+                MessageUtils.alertErrorConfirm(mActivity!!, "ALERT", result.contents) {
+
+                }
+            }
         }
+    }
+
+
+    private fun hasCameraPermission() =
+        ActivityCompat.checkSelfPermission(
+            mActivity!!,
+            Manifest.permission.CAMERA
+        ) == PackageManager.PERMISSION_GRANTED
+
+    private fun requestPermission(){
+        // opening up dialog to ask for camera permission
+        ActivityCompat.requestPermissions(
+            mActivity!!,
+            arrayOf(Manifest.permission.CAMERA),
+            CAMERA_PERMISSION_REQUEST_CODE
+        )
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        if (requestCode == CAMERA_PERMISSION_REQUEST_CODE
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            // user granted permissions - we can set up our scanner
+            ScanQrByServiceGoogleActivity.start(mActivity!!)
+        } else {
+            // user did not grant permissions - we can't use the camera
+            Toast.makeText(mActivity,
+                "Camera permission required.",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
 }

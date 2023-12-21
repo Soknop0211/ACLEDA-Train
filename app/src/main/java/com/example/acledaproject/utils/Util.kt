@@ -5,6 +5,8 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import br.com.fluentvalidator.context.ValidationResult
+import com.emv.qrcode.validators.Crc16Validate
 import com.example.acledaproject.viewmodel.DataList
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
@@ -125,6 +127,19 @@ class Util {
 
             return mSubItemList
         }
+
+        fun checkIsKHQR(resultEnCode : String?) : Boolean {
+            if (resultEnCode == null) return false
+
+            // Check encode invalid
+            val validationResult : ValidationResult = Crc16Validate.validate(resultEnCode)
+            if (!validationResult.isValid) {
+                return false
+            }
+
+            return true
+        }
+
 
     }
 }

@@ -18,16 +18,27 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" >
 
-            <SurfaceView
-                android:id="@+id/cameraSurfaceView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/custom_toolbar"/>
 
-            <com.example.acledaproject.ui.scan.ViewFinderOverlay
-                android:id="@+id/overlay"
-                android:layerType="software"
+            <RelativeLayout
+                android:layout_below="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content">
+
+                <SurfaceView
+                    android:id="@+id/cameraSurfaceView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <com.example.acledaproject.ui.scan.ViewFinderOverlay
+                    android:id="@+id/overlay"
+                    android:layerType="software"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </RelativeLayout>
 
             <TextView
                 android:visibility="gone"

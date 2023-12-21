@@ -212,11 +212,11 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
             }
             else ->{
                 mBinding.scannedText.text = scannedValue
-                if (checkIsKHQR(scannedValue)) {    // KHQR
-                    val mDataDecode : MerchantPresentedMode = DecoderMpm.decode(
+                if (Util.checkIsKHQR(scannedValue)) {    // KHQR
+                    /*val mDataDecode : MerchantPresentedMode = DecoderMpm.decode(
                         scannedValue,
                         MerchantPresentedMode::class.java
-                    )
+                    )*/
 
                     /*val result : String = "∙ Country code : ${mDataDecode.countryCode.value}\n" +
                                 "∙ Merchant Name : ${mDataDecode.merchantName.value}\n" +
@@ -235,18 +235,6 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
                 }
             }
         }
-    }
-
-    private fun checkIsKHQR(resultEnCode : String?) : Boolean {
-        if (resultEnCode == null) return false
-
-        // Check encode invalid
-        val validationResult : ValidationResult = Crc16Validate.validate(resultEnCode)
-        if (!validationResult.isValid) {
-            return false
-        }
-
-        return true
     }
 
     override fun onDestroy() {
