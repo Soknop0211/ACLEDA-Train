@@ -48,43 +48,45 @@ class Util {
 
         fun getEncodeTag(encodeSt : String) :  ArrayList<DataList> {
 
-            var j: Int
-
             val mList = ArrayList<DataList>()
             var mData = DataList()
 
-            var i = 0
-            while (i < encodeSt.length) {
-                if (mData.num.isEmpty()){
-                    mData.num = encodeSt.substring(i, i + 2)
-                } else if(mData.length.isEmpty()) {
-                    mData.length = encodeSt.substring(i, i + 2)
-                } else {
-                    if (mData.num == "29" || mData.num == "39" || mData.num == "40") {
-                        val number = mData.length.trimStart('0').toInt()
-
-                        val mSubItemList = subTag(mData, encodeSt, i)
-                        i += number
-                        mData.mList = mSubItemList
-                        mList.add(mData)
-                        mData = DataList()
-                        continue
+            try {
+                var i = 0
+                while (i < encodeSt.length) {
+                    if (mData.num.isEmpty()){
+                        mData.num = encodeSt.substring(i, i + 2)
+                    } else if(mData.length.isEmpty()) {
+                        mData.length = encodeSt.substring(i, i + 2)
                     } else {
-                        try {
+                        if (mData.num == "29" || mData.num == "39" || mData.num == "40" || mData.num == "99") {
                             val number = mData.length.trimStart('0').toInt()
-                            mData.valueItem = encodeSt.substring(i, i + number)
+
+                            val mSubItemList = subTag(mData, encodeSt, i)
+                            i += number
+                            mData.mList = mSubItemList
                             mList.add(mData)
                             mData = DataList()
-                            i += number
                             continue
-                        } catch (e: NumberFormatException) {
-                            println("Invalid number format") // Output: Invalid number format
+                        } else {
+                            try {
+                                val number = mData.length.trimStart('0').toInt()
+                                mData.valueItem = encodeSt.substring(i, i + number)
+                                mList.add(mData)
+                                mData = DataList()
+                                i += number
+                                continue
+                            } catch (e: NumberFormatException) {
+                                println("Invalid number format") // Output: Invalid number format
+                            }
                         }
                     }
+
+                    i += 2
+
                 }
-
-                i += 2
-
+            } catch (ex : StringIndexOutOfBoundsException) {
+                ex.printStackTrace()
             }
 
             mList.forEach {

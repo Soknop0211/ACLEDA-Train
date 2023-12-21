@@ -1,4 +1,4 @@
-package com.example.acledaproject.ui.adapter
+package com.example.acledaproject.ui.home.adapter
 
 import android.app.Activity
 import android.view.LayoutInflater

@@ -16,9 +16,9 @@ import com.example.acledaproject.model.HomeExtraModel
 import com.example.acledaproject.model.HomeItemModel
 import com.example.acledaproject.model.ItemImageSliderModel
 import com.example.acledaproject.ui.CaptureScanActivity
-import com.example.acledaproject.ui.adapter.HomeExtraCategoryAdapter
-import com.example.acledaproject.ui.adapter.HomeMainCategoryAdapter
-import com.example.acledaproject.ui.adapter.ImageSliderAdapter
+import com.example.acledaproject.ui.home.adapter.HomeExtraCategoryAdapter
+import com.example.acledaproject.ui.home.adapter.HomeMainCategoryAdapter
+import com.example.acledaproject.ui.home.adapter.ImageSliderAdapter
 import com.example.acledaproject.ui.scan.DoScanMlKitActivity
 import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity
 import com.example.acledaproject.ui.scan.ScanQrByCodeScannerActivity.Companion.CodeScannerSt
@@ -119,6 +119,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         val timer = Timer()
         timer.scheduleAtFixedRate(TheSlideTimer(), 2000, 3000)
         mBinding.tabLayout.setupWithViewPager(mBinding.viewPagerImageSlider, true)
+
     }
 
     inner class TheSlideTimer : TimerTask() {
