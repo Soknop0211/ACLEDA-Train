@@ -150,7 +150,7 @@
                             android:layout_height="wrap_content"
                             android:textSize="18sp"
                             android:textColor="@color/black"
-                            android:text=" KHR"/>
+                            android:text=" $"/>
 
                     </LinearLayout>
 
@@ -164,16 +164,32 @@
                         android:textColor="@color/gray"
                         android:text="@string/dot_line"/>
 
-                    <ImageView
-                        android:id="@+id/image_qr"
+                    <RelativeLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/kh_qrcode"
-                        android:layout_gravity="center"
-                        android:layout_marginHorizontal="30dp"
-                        android:layout_marginBottom="30dp"
-                        android:layout_marginTop="10dp"
-                        android:contentDescription="@string/app_name" />
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/image_qr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/kh_qrcode"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="30dp"
+                            android:layout_marginBottom="30dp"
+                            android:layout_marginTop="10dp"
+                            android:contentDescription="@string/app_name" />
+
+                        <ImageView
+                            android:layout_width="@dimen/dp_50"
+                            android:layout_height="@dimen/dp_50"
+                            android:layout_centerInParent="true"
+                            android:layout_gravity="center"
+                            android:background="@drawable/custom_circle"
+                            android:backgroundTint="@color/white"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/ic_dollar" />
+
+                    </RelativeLayout>
 
                 </LinearLayout>
 
