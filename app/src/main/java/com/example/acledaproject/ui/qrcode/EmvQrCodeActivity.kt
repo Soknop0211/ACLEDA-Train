@@ -60,7 +60,7 @@ class EmvQrCodeActivity : BaseBindActivity<ActivityEmvQrCodeBinding>() {
                     + "04ijkl64280002ZH0102北京0204最佳运输0304abcd65020080320016A0112233449988"
                     + "7707081234567863046325")
 
-            // Init Generate Qr 2
+            /*// Init Generate Qr 2
             val barcodeEncoder = BarcodeEncoder()
 
             try {
@@ -68,11 +68,11 @@ class EmvQrCodeActivity : BaseBindActivity<ActivityEmvQrCodeBinding>() {
                 mBinding.imageQr.setImageBitmap(qrCode)
             } catch (e: WriterException) {
                 e.printStackTrace()
-            }
+            }*/
         }
 
         // Display Tag
-        mEmvViewModel.devideTag()
+        // mEmvViewModel.devideTag()
         mEmvViewModel.listEncode.observe(this) {
             // MessageUtils.initAlertDialog(this@EmvQrCodeActivity, it)
         }

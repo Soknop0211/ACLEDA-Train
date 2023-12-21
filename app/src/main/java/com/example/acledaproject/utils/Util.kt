@@ -61,7 +61,7 @@ class Util {
                     } else if(mData.length.isEmpty()) {
                         mData.length = encodeSt.substring(i, i + 2)
                     } else {
-                        if (mData.num == "29" || mData.num == "39" || mData.num == "40" || mData.num == "99") {
+                        if (mData.num == "29" || mData.num == "39" || mData.num == "40" || mData.num == "99" || mData.num == "62") {
                             val number = mData.length.trimStart('0').toInt()
 
                             val mSubItemList = subTag(mData, encodeSt, i)

@@ -92,6 +92,11 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
             mBinding.overlay.setViewFinder()
         }
 
+        // Back Button
+        mBinding.toolbar.iconBack.setOnClickListener {
+            finish()
+        }
+
     }
 
     private fun copyToClipboard(text: CharSequence, view:View){
