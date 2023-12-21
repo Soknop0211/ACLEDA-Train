@@ -5,6 +5,7 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.ViewTreeObserver
+import com.example.acledaproject.viewmodel.DataList
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.EncodeHintType
 import com.google.zxing.WriterException
@@ -44,5 +45,84 @@ class Util {
             }
             return null
         }
+
+        fun getEncodeTag(encodeSt : String) :  ArrayList<DataList> {
+
+            var j: Int
+
+            val mList = ArrayList<DataList>()
+            var mData = DataList()
+
+            var i = 0
+            while (i < encodeSt.length) {
+                if (mData.num.isEmpty()){
+                    mData.num = encodeSt.substring(i, i + 2)
+                } else if(mData.length.isEmpty()) {
+                    mData.length = encodeSt.substring(i, i + 2)
+                } else {
+                    if (mData.num == "29" || mData.num == "39" || mData.num == "40") {
+                        val number = mData.length.trimStart('0').toInt()
+
+                        val mSubItemList = subTag(mData, encodeSt, i)
+                        i += number
+                        mData.mList = mSubItemList
+                        mList.add(mData)
+                        mData = DataList()
+                        continue
+                    } else {
+                        try {
+                            val number = mData.length.trimStart('0').toInt()
+                            mData.valueItem = encodeSt.substring(i, i + number)
+                            mList.add(mData)
+                            mData = DataList()
+                            i += number
+                            continue
+                        } catch (e: NumberFormatException) {
+                            println("Invalid number format") // Output: Invalid number format
+                        }
+                    }
+                }
+
+                i += 2
+
+            }
+
+            mList.forEach {
+                Log.d("logdebugdecodemodel", it.num + " : " + it.length + "=>" + it.valueItem)
+            }
+
+            return mList
+        }
+
+        private fun subTag(mData : DataList, encodeSt : String, i : Int) : ArrayList<DataList>{
+            val mSubItemList = ArrayList<DataList>()
+            var mSubData = DataList()
+            val number = mData.length.trimStart('0').toInt()
+
+            val mItem = encodeSt.substring(i, i + number)
+            var j = 0
+            while (j < mItem.length) {
+                if (mSubData.num.isEmpty()){
+                    mSubData.num = mItem.substring(j, j + 2)
+                } else if(mSubData.length.isEmpty()) {
+                    mSubData.length = mItem.substring(j, j + 2)
+                } else {
+                    try {
+                        val subNumber = mSubData.length.trimStart('0').toInt()
+                        mSubData.valueItem = mItem.substring(j, j + subNumber)
+                        mSubItemList.add(mSubData)
+                        mSubData = DataList()
+                        j += subNumber
+                        continue
+                    } catch (e: NumberFormatException) {
+                        println("Invalid number format") // Output: Invalid number format
+                    }
+                }
+                j += 2
+            }
+
+            return mSubItemList
+        }
+
     }
 }

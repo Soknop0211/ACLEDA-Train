@@ -23,6 +23,7 @@ import com.example.acledaproject.R
 import com.example.acledaproject.base.BaseBindActivity
 import com.example.acledaproject.databinding.ActivityScanQrByCamViewBinding
 import com.example.acledaproject.utils.MessageUtils
+import com.example.acledaproject.utils.Util
 import com.google.android.gms.vision.CameraSource
 import com.google.android.gms.vision.Detector
 import com.google.android.gms.vision.barcode.Barcode
@@ -217,13 +218,16 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
                         MerchantPresentedMode::class.java
                     )
 
-                    val result : String = "∙ Country code : ${mDataDecode.countryCode.value}\n" +
+                    /*val result : String = "∙ Country code : ${mDataDecode.countryCode.value}\n" +
                                 "∙ Merchant Name : ${mDataDecode.merchantName.value}\n" +
-                            "∙ TransactionAmount : ${mDataDecode.transactionAmount.value}"
+                            "∙ TransactionAmount : ${mDataDecode.transactionAmount.value}" */
 
-                    MessageUtils.alertErrorConfirm(this, "KHQR", result) {
+                    MessageUtils.initAlertDialog(
+                        this@ScanQrByServiceGoogleActivity,
+                        Util.getEncodeTag(scannedValue)) {
                         finish()
                     }
+
                 } else {
                     MessageUtils.alertErrorConfirm(this, "ALERT", scannedValue) {
                         finish()

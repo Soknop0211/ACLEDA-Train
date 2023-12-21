@@ -20,6 +20,7 @@ import com.emv.qrcode.model.mpm.PaymentSystemSpecificTemplate
 import com.emv.qrcode.model.mpm.Unreserved
 import com.emv.qrcode.model.mpm.UnreservedTemplate
 import com.emv.qrcode.validators.Crc16Validate
+import java.io.Serializable
 
 class EmvViewModel : ViewModel() {
 
@@ -168,7 +169,7 @@ class EmvViewModel : ViewModel() {
         }
 
         val merchantPresentedMode = DecoderMpm.decode(
-            encodeString,
+            encoded,
             MerchantPresentedMode::class.java
         )
 
@@ -208,4 +209,93 @@ class EmvViewModel : ViewModel() {
                      "merchantName : ${mDataDecode.getMerchantName()}")*/
     }
 
+    private val _listEncode = MutableLiveData<ArrayList<DataList>>()
+    val listEncode: LiveData<ArrayList<DataList>> = _listEncode
+
+    fun devideTag() {
+        val encodeSts =
+            "00020101021129360009khqr@aclb01090869710770206ACLEDA3920001185518499848010145204200053031165802KH5907SOK NOP6010PHNOM PENH6213020908697107763048E6D"
+
+        val encodeSt =
+            "00020101021129450016abaakhppxxx@abaa01090021849430208ABA Bank40390006abaP2P01121EF1D97EDE2702090021849435204000053038405802KH5907Nop SOK6010Phnom Penh6304CBB4"
+
+
+        var j: Int
+
+        val mList = ArrayList<DataList>()
+        var mData = DataList()
+
+        var i = 0
+        while (i < encodeSt.length) {
+            if (mData.num.isEmpty()){
+                mData.num = encodeSt.substring(i, i + 2)
+            } else if(mData.length.isEmpty()) {
+                mData.length = encodeSt.substring(i, i + 2)
+            } else {
+                if (mData.num == "29" || mData.num == "39" || mData.num == "40") {
+                    val mSubItemList = ArrayList<DataList>()
+                    var mSubData = DataList()
+                    val number = mData.length.trimStart('0').toInt()
+
+                    val mItem = encodeSt.substring(i, i + number)
+                    j = 0
+                    while (j < mItem.length) {
+                        if (mSubData.num.isEmpty()){
+                            mSubData.num = mItem.substring(j, j + 2)
+                        } else if(mSubData.length.isEmpty()) {
+                            mSubData.length = mItem.substring(j, j + 2)
+                        } else {
+                            try {
+                                val subNumber = mSubData.length.trimStart('0').toInt()
+                                mSubData.valueItem = mItem.substring(j, j + subNumber)
+                                mSubItemList.add(mSubData)
+                                mSubData = DataList()
+                                j += subNumber
+                                continue
+                            } catch (e: NumberFormatException) {
+                                println("Invalid number format") // Output: Invalid number format
+                            }
+                        }
+                        j += 2
+                    }
+
+
+                    i += number
+                    mData.mList = mSubItemList
+                    mList.add(mData)
+                    mData = DataList()
+                    continue
+                } else {
+                    try {
+                        val number = mData.length.trimStart('0').toInt()
+                        mData.valueItem = encodeSt.substring(i, i + number)
+                        mList.add(mData)
+                        mData = DataList()
+                        i += number
+                        continue
+                    } catch (e: NumberFormatException) {
+                        println("Invalid number format") // Output: Invalid number format
+                    }
+                }
+            }
+
+            i += 2
+
+        }
+
+        mList.forEach {
+            Log.d("logdebugdecodemodel", it.num + " : " + it.length + "=>" + it.valueItem)
+        }
+
+        _listEncode.value = mList
+    }
+
+
 }
+
+data class DataList(
+    var num: String = "",
+    var length: String = "",
+    var valueItem: String = "",
+    var mList : ArrayList<DataList> = ArrayList()
+    ) : Serializable
