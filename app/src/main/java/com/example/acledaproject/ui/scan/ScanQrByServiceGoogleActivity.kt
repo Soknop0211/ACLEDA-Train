@@ -97,6 +97,8 @@ class ScanQrByServiceGoogleActivity : BaseBindActivity<ActivityScanQrByCamViewBi
             finish()
         }
 
+        mBinding.toolbar.titleToolbar.text = "Scan QR"
+
     }
 
     private fun copyToClipboard(text: CharSequence, view:View){

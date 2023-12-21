@@ -1,6 +1,7 @@
 package com.example.acledaproject.ui.home
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -225,6 +226,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         )
     }
 
+    @SuppressLint("UnsafeOptInUsageError")
     private fun alertOption(mContext: Context?) {
         if (mContext == null) return
 
@@ -322,6 +324,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         )
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
